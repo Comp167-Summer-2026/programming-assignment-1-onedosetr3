@@ -68,9 +68,9 @@ public class TemperatureConverter {
                     double convertedTemperature = convertTemperature(temperature, unit);
 
                     if (unit.toUpperCase().equals("C")) {
-                        System.out.printf("%.2f°C is equal to %.2f°F%n", temperature, convertedTemperature);
+                        System.out.printf("%.2f\u00B0C is equal to %.2f\u00B0F%n", temperature, convertedTemperature);
                     } else {
-                        System.out.printf("%.2f°F is equal to %.2f°C%n", temperature, convertedTemperature);
+                        System.out.printf("%.2f\u00B0C is equal to %.2f\u00B0F%n", temperature, convertedTemperature);
                     }
                 } else {
                     System.out.println("Invalid unit. Please enter C or F.");
