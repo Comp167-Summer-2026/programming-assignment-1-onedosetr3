@@ -52,28 +52,34 @@ public class TemperatureConverter {
         //While Loop. MOST IMPORTANT
         while (running) {
             System.out.print("Enter a temperature value or type \"stop\" to quit: "); //Initial Message
-            String tempInput = scanner.nextLine(); //Record User input
+            String tempInput = scanner.nextLine().trim(); //Record User input
 
             if (tempInput.toLowerCase().equals("stop")) { //If User inputs stop.
                 running = false;
             } else if (!isValidNumber(tempInput)) { //If not a valid number. The need to try again
                 System.out.println("Invalid temperature input. Please enter a numeric value.");
             } else {
-                double temperature = Double.parseDouble(tempInput); //If a valid number is inputted then we do this.
+                double temperature = Double.parseDouble(tempInput); // If a valid number is inputted then we do this.
 
-                System.out.print("Enter the unit (C or F): "); //Ask user to input number
-                String unit = scanner.nextLine();
+                boolean validUnit = false;
 
-                if (unit.toUpperCase().equals("C") || unit.toUpperCase().equals("F")) {
-                    double convertedTemperature = convertTemperature(temperature, unit);
+                while (!validUnit) {
+                    System.out.print("Enter the unit (C or F): ");
+                    String unit = scanner.nextLine().trim();
 
-                    if (unit.toUpperCase().equals("C")) {
-                        System.out.printf("%.2f\u00B0C is equal to %.2f\u00B0F%n", temperature, convertedTemperature);
+                    if (unit.toUpperCase().equals("C") || unit.toUpperCase().equals("F")) {
+                        double convertedTemperature = convertTemperature(temperature, unit);
+
+                        if (unit.toUpperCase().equals("C")) {
+                            System.out.printf("%.2f\u00B0C is equal to %.2f\u00B0F%n", temperature, convertedTemperature);
+                        } else {
+                            System.out.printf("%.2f\u00B0F is equal to %.2f\u00B0C%n", temperature, convertedTemperature);
+                        }
+
+                        validUnit = true;
                     } else {
-                        System.out.printf("%.2f\u00B0C is equal to %.2f\u00B0F%n", temperature, convertedTemperature);
+                        System.out.println("Invalid unit. Please enter C or F.");
                     }
-                } else {
-                    System.out.println("Invalid unit. Please enter C or F.");
                 }
             }
         }
